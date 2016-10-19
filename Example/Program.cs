@@ -74,7 +74,6 @@
         }
 
         /// <summary>
-        /// Let's use the last name as partition key.
         /// Partition key is a unique identifier for the partition within a given table.
         /// Partition key and row key together constitute a unique identifier for an entity on Azure table.
         /// It is indexed by default and you should assign values that you will use in queries to
@@ -91,10 +90,9 @@
         }
 
         /// <summary>
-        /// Let's use the student id as row key.
         /// The second part of the primary key is the row key, specified by the RowKey property. 
         /// It is indexed by default and you should assign values that you will use in queries to
-        /// your partition keys.
+        /// your row keys.
         /// </summary>
         public string Longitude
         {
