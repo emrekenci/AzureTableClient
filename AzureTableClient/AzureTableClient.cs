@@ -65,9 +65,22 @@
         /// <typeparam name="T">A class that inherits from TableEntity class</typeparam>
         /// <param name="partitionKey">The partition key we're searching with</param>
         /// <returns>List of TableEntities with the given partition key sorted by Timestamp</returns>
-        public List<T> GetEntities<T>(string partitionKey) where T : TableEntity, new()
+        public List<T> GetEntitiesByPartitionKey<T>(string partitionKey) where T : TableEntity, new()
         {
             var query = new TableQuery<T>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, partitionKey));
+            var result = Table.ExecuteQuery(query).OrderByDescending(record => record.Timestamp).ToList();
+            return result;
+        }
+
+        /// <summary>
+        /// Given a row key, returns the entities with that row key sorted by Timestamp
+        /// </summary>
+        /// <typeparam name="T">A class that inherits from TableEntity class</typeparam>
+        /// <param name="rowKey">The row key we're searching with</param>
+        /// <returns>List of TableEntities with the given row key sorted by Timestamp</returns>
+        public List<T> GetEntitiesByRowKey<T>(string rowKey) where T : TableEntity, new()
+        {
+            var query = new TableQuery<T>().Where(TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.Equal, rowKey));
             var result = Table.ExecuteQuery(query).OrderByDescending(record => record.Timestamp).ToList();
             return result;
         }
