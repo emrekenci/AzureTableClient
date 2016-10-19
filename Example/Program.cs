@@ -104,10 +104,19 @@
             }
         }
 
+        /// <summary>
+        /// Custom property, not indexed. Queries with this property will be slow.
+        /// </summary>
         public string Continent { get; set; }
 
+        /// <summary>
+        /// Custom property, not indexed. Queries with this property will be slow.
+        /// </summary>
         public string Country { get; set; }
 
+        /// <summary>
+        /// Custom property, not indexed. Queries with this property will be slow.
+        /// </summary>
         public string City { get; set; }
     }
 }
