@@ -127,9 +127,9 @@
         {
             var retrieveOperation = TableOperation.Retrieve<T>(partitionKey, rowKey);
             var retrievedResult = Table.Execute(retrieveOperation);
-            var deleteEntity = (T)retrievedResult.Result;
-            if (deleteEntity == null) return false;
-            var deleteOperation = TableOperation.Delete(deleteEntity);
+            var entityToDelete = (T)retrievedResult.Result;
+            if (entityToDelete == null) return false;
+            var deleteOperation = TableOperation.Delete(entityToDelete);
             Table.Execute(deleteOperation);
             return true;
         }
